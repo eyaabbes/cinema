@@ -30,14 +30,17 @@ public class SeanceController {
     }
 
     @PostMapping
-    public Seance add(@RequestBody Seance seance, @RequestParam Long filmId) {
+    public Seance add(@RequestBody Seance seance,
+                      @RequestParam Long filmId) {
 
         Film film = FilmRepository.findById(filmId)
                 .orElseThrow(() -> new RuntimeException("Film non trouvé"));
 
         seance.setFilm(film);
 
-        return seanceRepository.save(seance);
+        Seance saved = seanceRepository.save(seance);
+
+        return seanceRepository.findById(saved.getId()).get();
     }
     @GetMapping("/film/{filmId}")
     public List<Seance> getByFilm(@PathVariable Long filmId) {
