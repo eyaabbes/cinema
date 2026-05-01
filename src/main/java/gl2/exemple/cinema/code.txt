@@ -1,0 +1,46 @@
+post http://localhost:8080/films
+{
+  "titre": "michael jackson",
+  "genre": "drama",
+  "duree": 130
+}
+
+post http://localhost:8080/films
+{
+  "titre": "Interstellar",
+  "genre": "Sci-Fi",
+  "duree": 169
+}
+
+post http://localhost:8080/seances?filmId=2
+{
+  "date": "2026-05-01",
+  "heure": "21:00",
+  "placesDisponibles": 50
+}
+
+post http://localhost:8080/seances?filmId=2
+{
+  "date": "2026-05-11",
+  "heure": "21:00",
+  "placesDisponibles": 70
+}
+
+post http://localhost:8080/seances?filmId=1
+{
+  "date": "2026-05-11",
+  "heure": "17:00",
+  "placesDisponibles": 50
+}
+
+get http://localhost:8080/seances
+
+post http://localhost:8080/reservations?seanceId=2&nomClient=Eya&nbPlaces=3
+
+post http://localhost:8080/reservations?seanceId=1&nomClient=fatma&nbPlaces=6
+
+
+get http://localhost:8080/reservations/1
+
+get http://localhost:8080/reservations/2
+
