@@ -57,4 +57,8 @@ public class FilmController {
     public List<Film> getByGenre(@PathVariable String genre) {
         return filmRepository.findByGenre(genre);
     }
+    @GetMapping("/search")
+    public List<Film> searchByTitre(@RequestParam String titre) {
+        return filmRepository.findByTitreContainingIgnoreCase(titre);
+    }
 }

@@ -44,3 +44,28 @@ get http://localhost:8080/reservations/1
 
 get http://localhost:8080/reservations/2
 
+PUT http://localhost:8080/films/1
+{
+  "titre": "Avatar 2",
+  "genre": "Science-fiction",
+  "duree": 190
+}
+
+GET http://localhost:8080/films/genre/sci-fi
+
+GET http://localhost:8080/films/search?titre=Interstellar
+
+GET http://localhost:8080//seances/disponibles
+
+GET http://localhost:8080/seances/1
+
+PUT http://localhost:8080/seances/1
+{
+  "date": "2026-05-15",
+  "heure": "21:00",
+  "placesDisponibles": 60
+}
+
+DELETE http://localhost:8080/seances/1
+
+DELETE http://localhost:8080/films/1
