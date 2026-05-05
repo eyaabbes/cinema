@@ -45,6 +45,11 @@ public class SeanceController {
         return seanceRepository.findByFilmId(filmId);
     }
 
+    @GetMapping("/disponibles")
+    public List<Seance> getSeancesDisponibles() {
+        return seanceRepository.findByPlacesDisponiblesGreaterThan(0);
+    }
+
     @GetMapping("/{id}")
     public Seance getById(@PathVariable Long id) {
         return seanceRepository.findById(id)
@@ -80,8 +85,5 @@ public class SeanceController {
         seanceRepository.delete(seance);
         return "Séance supprimée avec succès";
     }
-    @GetMapping("/disponibles")
-    public List<Seance> getSeancesDisponibles() {
-        return seanceRepository.findByPlacesDisponiblesGreaterThan(0);
-    }
+
 }

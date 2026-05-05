@@ -5,7 +5,7 @@ import gl2.exemple.cinema.Repository.ReservationRepository;
 import  gl2.exemple.cinema.Model.Reservation;
 import gl2.exemple.cinema.Repository.SeanceRepository;
 import  gl2.exemple.cinema.Service.ReservationService;
-import org.antlr.v4.runtime.tree.pattern.ParseTreePattern;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,13 +15,13 @@ import java.util.List;
 public class ReservationController {
 
     private final ReservationService reservationService;
-    private final ReservationRepository ReservationRepository;
-    private final SeanceRepository SeanceRepository;
+    private final ReservationRepository reservationRepository;
+    private final SeanceRepository seanceRepository;
 
     public ReservationController(ReservationService reservationService, ReservationRepository reservationRepository, SeanceRepository seanceRepository) {
         this.reservationService = reservationService;
-        this.ReservationRepository = reservationRepository;
-        SeanceRepository = seanceRepository;
+        this.reservationRepository = reservationRepository;
+        this.seanceRepository = seanceRepository;
     }
 
     @PostMapping
@@ -32,15 +32,13 @@ public class ReservationController {
         return reservationService.reserver(seanceId, nomClient, nbPlaces);
     }
     @GetMapping
-    public List<Seance> getAll(@RequestParam(required = false) String date) {
-        if (date != null) {
-            return SeanceRepository.findByDate(date);
-        }
-        return SeanceRepository.findAll();
+    public List<Reservation> getAll() {
+        return reservationRepository.findAll();
     }
+
     @GetMapping("/{id}")
     public Reservation getById(@PathVariable Long id) {
-        return ReservationRepository.findById(id)
+        return reservationRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Reservation non trouvée"));
     }
 }
